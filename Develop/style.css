@@ -50,6 +50,48 @@ header {
   height: 2px;
 }
 
+.card-header {
+  position: relative;
+}
+
+.card-header button {
+  position: absolute;
+  bottom: -3rem;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+  transition: all 150ms;
+}
+
+.card-header button:hover {
+  background-color: #00000012;
+}
+
+.card-header button:focus {
+  outline: dashed 1px rgba(0, 0, 0, 0.14);
+}
+
+.card-header button:active {
+  background-color: #c0c7cf;
+}
+
+.card-header button img {
+  width: 30px;
+}
+
+.card-header button.copied::after {
+  content: "copied!";
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  color: rgba(0, 0, 0, 0.568);
+}
+
+.hide {
+  display: none;
+}
+
 .card-body {
   min-height: 100px;
   font-family: monospace;
@@ -58,11 +100,11 @@ header {
   color: rgba(255, 255, 255, 0);
   word-wrap: break-word;
   hyphens: none;
-  /* font-weight: bold; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  padding: 1rem 3rem;
 }
 
 .card-body span {

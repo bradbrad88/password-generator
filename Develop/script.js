@@ -99,10 +99,21 @@ const getSymbol = function () {
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+const copyBtn = document.querySelector("#copy");
 
+copyBtn.addEventListener("click", onCopy);
+
+function onCopy() {
+  copyBtn.classList.add("copied");
+  navigator.clipboard.writeText(password);
+  setTimeout(() => {
+    copyBtn.classList.remove("copied");
+  }, 2000);
+}
 // Write password to the #password input
 function writePassword() {
   generatePassword();
+  copyBtn.classList.remove("hide");
   var passwordText = document.querySelector(".card-body");
   clearElement(passwordText);
   spanText(password, passwordText);
