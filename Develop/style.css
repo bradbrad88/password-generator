@@ -52,6 +52,21 @@ header {
 
 .card-body {
   min-height: 100px;
+  font-family: monospace;
+  text-align: center;
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0);
+  word-wrap: break-word;
+  hyphens: none;
+  /* font-weight: bold; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.card-body span {
+  width: 1rem;
 }
 
 .card-footer {
@@ -76,8 +91,7 @@ header {
   border: none;
   background-color: hsl(360, 91%, 36%);
   border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
-    0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
   color: hsl(0, 0%, 100%);
   display: inline-block;
   font-size: 22px;

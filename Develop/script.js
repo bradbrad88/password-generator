@@ -1,8 +1,13 @@
-// Assignment code here
+// Global scope for password so it is accessible to clipboard function
+let password = "";
+
 function generatePassword() {
   // Get the required password length from the user
   const length = getPasswordLength();
-  if (!length) return "";
+  if (!length) {
+    password = "";
+    return;
+  }
 
   // Put the functions that are required by the user in their own array so they can be called randomly
   const functionArray = getFunctionArray();
@@ -12,10 +17,10 @@ function generatePassword() {
     alert("⚠️ Please select at least one character type");
     return "";
   }
-  const password = createPasswordArray(length, functionArray);
+  const passwordArray = createPasswordArray(length, functionArray);
 
   // convert the password array to a string with the 'join' method and return it
-  return password.join("");
+  password = passwordArray.join("");
 }
 
 // Return password length if valid, otherwise return undefined and provide alert
@@ -97,10 +102,52 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
+  generatePassword();
+  var passwordText = document.querySelector(".card-body");
+  clearElement(passwordText);
+  spanText(password, passwordText);
+  animateText(passwordText);
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+function spanText(text, container) {
+  text.split("").forEach(letter => {
+    const spanEl = document.createElement("span");
+    spanEl.innerText = letter;
+    container.appendChild(spanEl);
+  });
+}
+
+function clearElement(el) {
+  el.innerText = "";
+}
+
+function animateText(container) {
+  const elements = Array.from(container.children);
+
+  elements.forEach(el => {
+    setAnimation(el);
+  });
+}
+
+function setAnimation(el) {
+  const delay = Math.floor(Math.random() * 1000);
+  const originalChar = el.innerText;
+  setTimeout(() => {
+    el.setAttribute("style", "color: black;");
+    const chars =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$^&*()_+-=<>,./?~`{}[]";
+    let remaining = 5;
+    const interval = setInterval(() => {
+      if (remaining < 1) {
+        el.innerText = originalChar;
+        return clearInterval(interval);
+      }
+      const idx = Math.floor(Math.random() * chars.length);
+      el.innerText = chars[idx];
+      remaining--;
+    }, 80);
+  }, delay);
+}
