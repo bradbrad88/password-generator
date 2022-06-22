@@ -98,11 +98,10 @@ const getSymbol = function () {
 };
 
 // Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+const generateBtn = document.querySelector("#generate");
 const copyBtn = document.querySelector("#copy");
 
-copyBtn.addEventListener("click", onCopy);
-
+// click handler for 'copy to clipboard' button
 function onCopy() {
   copyBtn.classList.add("copied");
   navigator.clipboard.writeText(password);
@@ -110,19 +109,12 @@ function onCopy() {
     copyBtn.classList.remove("copied");
   }, 2000);
 }
-// Write password to the #password input
-function writePassword() {
-  generatePassword();
-  displayClipboard();
-  var passwordText = document.querySelector(".card-body");
-  clearElement(passwordText);
-  spanText(password, passwordText);
-  animateText(passwordText);
-}
 
-// Add event listener to generate button
+// Add event listeners to buttons
 generateBtn.addEventListener("click", writePassword);
+copyBtn.addEventListener("click", onCopy);
 
+// only show the 'copy to clipboard' button if a password has been successfully generated
 function displayClipboard() {
   if (password) {
     copyBtn.classList.remove("hide");
@@ -130,6 +122,13 @@ function displayClipboard() {
     copyBtn.classList.add("hide");
   }
 }
+
+// remove all child elements from container
+function clearElement(el) {
+  el.innerText = "";
+}
+
+// spannify the text - grab each character in the string and wrap it in a span, then append it to the parent container
 function spanText(text, container) {
   text.split("").forEach(letter => {
     const spanEl = document.createElement("span");
@@ -138,34 +137,58 @@ function spanText(text, container) {
   });
 }
 
-function clearElement(el) {
-  el.innerText = "";
-}
-
+// create an array out of the container's children (the spans making up the password)
+// then animate them individually
 function animateText(container) {
   const elements = Array.from(container.children);
-
   elements.forEach(el => {
     setAnimation(el);
   });
 }
 
+// applies animation to a single span element
 function setAnimation(el) {
+  // create a random delay between 0 and 1 second
   const delay = Math.floor(Math.random() * 1000);
+
+  // ensure we have access to the original character intended as the password
   const originalChar = el.innerText;
+
+  // begin the animation after random delay
   setTimeout(() => {
-    el.setAttribute("style", "color: black;");
+    // add class to display characters - original style has color set to transparent
+    el.classList.add("show");
+    // use this as random characters available to show - this is purely cosmetic and only related to the animation
     const chars =
       "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$^&*()_+-=<>,./?~`{}[]";
     let remaining = 5;
+
     const interval = setInterval(() => {
+      // on the final loop, set the character to the originally intended one and break loop
       if (remaining < 1) {
         el.innerText = originalChar;
         return clearInterval(interval);
       }
+      // set the element inner text to a random character from chars string
       const idx = Math.floor(Math.random() * chars.length);
       el.innerText = chars[idx];
       remaining--;
     }, 80);
   }, delay);
+}
+
+// Write password to the #password input
+function writePassword() {
+  // select the parent field to the password
+  const passwordText = document.querySelector(".card-body");
+  // run function to generate a password and store it in global password variable
+  generatePassword();
+  // display the 'copy to clipboard' button if password successfully generates
+  displayClipboard();
+  // remove an existing password before displaying new password
+  clearElement(passwordText);
+  // put each letter of the password into a span element for display and animation purposes
+  spanText(password, passwordText);
+  // animate the password generation
+  animateText(passwordText);
 }

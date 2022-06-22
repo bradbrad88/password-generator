@@ -123,6 +123,10 @@ header {
   width: 1rem;
 }
 
+.show {
+  color: rgb(100, 94, 213);
+}
+
 .card-footer {
   text-align: center;
 }
