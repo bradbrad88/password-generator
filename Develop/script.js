@@ -113,7 +113,7 @@ function onCopy() {
 // Write password to the #password input
 function writePassword() {
   generatePassword();
-  copyBtn.classList.remove("hide");
+  displayClipboard();
   var passwordText = document.querySelector(".card-body");
   clearElement(passwordText);
   spanText(password, passwordText);
@@ -123,6 +123,13 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+function displayClipboard() {
+  if (password) {
+    copyBtn.classList.remove("hide");
+  } else {
+    copyBtn.classList.add("hide");
+  }
+}
 function spanText(text, container) {
   text.split("").forEach(letter => {
     const spanEl = document.createElement("span");
