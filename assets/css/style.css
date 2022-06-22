@@ -47,10 +47,10 @@ header {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
   color: hsl(208, 55%, 86%);
   font-size: 18px;
-  margin: 0 auto 2rem auto;
+  margin: 2rem;
+  margin-top: 0;
   max-width: 800px;
   padding: 30px 40px;
-  margin: 2rem;
 }
 
 .card-header::after {
