@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --highlight: #004d7a;
+  --background: #181818;
+}
+
 html,
 body,
 .wrapper {
@@ -14,40 +19,46 @@ body,
 
 body {
   font-family: sans-serif;
-  background-color: #f9fbfd;
+  background-color: var(--background);
+  height: fit-content;
 }
 
 .wrapper {
-  padding-top: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
   text-align: center;
   padding: 20px;
   padding-top: 0px;
-  color: hsl(206, 17%, 28%);
+  color: hsl(0, 0%, 84%);
+  font-size: 2rem;
+  text-shadow: 12px 12px 3px rgba(255, 255, 255, 0.044);
 }
 
 .card {
-  background-color: hsl(0, 0%, 100%);
+  position: relative;
+  background-color: hsl(0, 0%, 12%);
   border-radius: 5px;
   border-width: 1px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
-  color: hsl(206, 17%, 28%);
+  color: hsl(208, 55%, 86%);
   font-size: 18px;
-  margin: 0 auto;
+  margin: 0 auto 2rem auto;
   max-width: 800px;
   padding: 30px 40px;
+  margin: 2rem;
 }
 
 .card-header::after {
   content: " ";
   display: block;
   width: 100%;
-  background: #e7e9eb;
-  height: 2px;
+  background: var(--highlight);
+  height: 10px;
 }
 
 .card-header {
@@ -56,8 +67,8 @@ header {
 
 .card-header button {
   position: absolute;
-  bottom: -3rem;
-  right: 0;
+  bottom: -3.2rem;
+  right: 0.2rem;
   background-color: rgba(0, 0, 0, 0);
   border: none;
   cursor: pointer;
@@ -98,6 +109,7 @@ header {
   text-align: center;
   font-size: 1.4rem;
   color: rgba(255, 255, 255, 0);
+  background-color: rgb(199, 199, 199);
   word-wrap: break-word;
   hyphens: none;
   display: flex;
@@ -119,8 +131,8 @@ header {
   content: " ";
   display: block;
   width: 100%;
-  background: #e7e9eb;
-  height: 2px;
+  background: var(--highlight);
+  height: 10px;
 }
 
 .card-footer::after {
@@ -133,7 +145,7 @@ header {
   border: none;
   background-color: hsl(360, 91%, 36%);
   border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
+  box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.4);
   color: hsl(0, 0%, 100%);
   display: inline-block;
   font-size: 22px;
@@ -172,6 +184,14 @@ button[disabled] {
   border-radius: 6px;
   resize: none;
   overflow: hidden;
+}
+
+footer {
+  color: white;
+  text-align: center;
+  background-color: rgb(15, 15, 15);
+  margin-top: auto;
+  width: 100%;
 }
 
 @media (max-width: 690px) {
