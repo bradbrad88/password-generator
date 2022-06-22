@@ -23,6 +23,7 @@ body {
   height: fit-content;
 }
 
+/* min height set to full viewport height so page footer displays correctly */
 .wrapper {
   min-height: 100vh;
   position: relative;
@@ -39,6 +40,7 @@ header {
   text-shadow: 12px 12px 3px rgba(255, 255, 255, 0.044);
 }
 
+/* styling for main card */
 .card {
   position: relative;
   background-color: hsl(0, 0%, 12%);
@@ -47,6 +49,7 @@ header {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
   color: hsl(208, 55%, 86%);
   font-size: 18px;
+  /* using the min function for responsive behaviour, will stay at 90% of its container but never go more than 800px */
   width: min(90%, 800px);
   margin: 2rem auto;
   margin-top: 0;
@@ -65,6 +68,7 @@ header {
   position: relative;
 }
 
+/* 'copy to clipboard' button */
 .card-header button {
   position: absolute;
   bottom: -3.2rem;
@@ -91,6 +95,7 @@ header {
   width: 30px;
 }
 
+/* provide visual feedback that the button worked with a class change of 'copied' */
 .card-header button.copied::after {
   content: "copied!";
   position: absolute;
@@ -167,27 +172,6 @@ button[disabled] {
 
 .float-right {
   float: right;
-}
-
-#password {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  display: block;
-  width: 100%;
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 85px;
-  font-size: 1.2rem;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px dashed #c0c7cf;
-  border-radius: 6px;
-  resize: none;
-  overflow: hidden;
 }
 
 footer {
