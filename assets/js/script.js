@@ -53,6 +53,7 @@ function createPasswordArray(length, functionArray) {
   const arr = [];
 
   // Begin building password by calling each function at least once so that requirements are met
+
   // (characters to be inserted in random order)
   functionArray.forEach(func => {
     insertRandomly(func(), arr);
@@ -178,7 +179,8 @@ function setAnimation(el) {
 }
 
 // Write password to the #password input
-function writePassword() {
+function writePassword(e) {
+  e.preventDefault();
   // select the parent field to the password
   const passwordText = document.querySelector(".card-body");
   // run function to generate a password and store it in global password variable
@@ -192,3 +194,24 @@ function writePassword() {
   // animate the password generation
   animateText(passwordText);
 }
+
+// const displayPwLength = document.getElementById("display-pw-length");
+const lengthInputRange = document.getElementById("pw-length-range");
+const lengthInputText = document.getElementById("pw-length-text");
+
+lengthInputRange.addEventListener("input", () => {
+  lengthInputText.value = lengthInputRange.value;
+});
+
+lengthInputText.addEventListener("change", e => {
+  const validateInput = el => {
+    const val = el.value;
+    if (isNaN(val)) {
+      return (el.value = 8);
+    }
+    if (val < 8) return (el.value = 8);
+    if (val > 128) return (el.value = 128);
+  };
+  validateInput(e.target);
+  lengthInputRange.value = e.target.value;
+});

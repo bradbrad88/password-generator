@@ -12,18 +12,47 @@
       <header>
         <h1>Password Generator</h1>
       </header>
-      <div class="card">
-        <div class="card-header">
-          <h2>Generate a Password</h2>
-          <button id="copy" class="hide">
-            <img src="./assets/images/copy.png" alt="copy to clipboard icon" />
-          </button>
+      <main>
+        <div class="card">
+          <div class="card-header">
+            <h2>Generate a Password</h2>
+            <button id="copy" class="hide">
+              <img src="./assets/images/copy.png" alt="copy to clipboard icon" />
+            </button>
+          </div>
+          <div class="card-body"></div>
+          <div class="card-footer">
+            <form>
+              <label id="length-label"
+                >Password Length<input
+                  id="pw-length-range"
+                  type="range"
+                  max="128"
+                  min="8"
+                  value="8" />
+                <input id="pw-length-text" type="number" value="8"
+              /></label>
+              <fieldset>
+                <legend>Include characters</legend>
+                <label
+                  ><input id="lower" name="lower" type="checkbox" checked />Lowercase</label
+                >
+                <label
+                  ><input id="upper" name="lower" type="checkbox" checked />Uppercase</label
+                >
+                <label
+                  ><input id="number" name="lower" type="checkbox" checked />Numbers</label
+                >
+                <label
+                  ><input id="symbol" name="lower" type="checkbox" checked />Symbols</label
+                >
+              </fieldset>
+
+              <button id="generate" class="btn">Generate Password</button>
+            </form>
+          </div>
         </div>
-        <div class="card-body"></div>
-        <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
-        </div>
-      </div>
+      </main>
       <footer>
         <p>Created by Brad Teague 2022</p>
       </footer>
