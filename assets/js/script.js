@@ -1,5 +1,46 @@
+const generateBtn = document.querySelector("#generate");
+const copyBtn = document.querySelector("#copy");
+const lengthInputRange = document.getElementById("pw-length-range");
+const lengthInputText = document.getElementById("pw-length-text");
+const fieldSet = document.querySelector("fieldset");
+
 // Global scope for password so it is accessible to clipboard function
 let password = "";
+
+lengthInputRange.addEventListener("input", () => {
+  lengthInputText.value = lengthInputRange.value;
+});
+
+lengthInputText.addEventListener("change", e => {
+  const validateInput = el => {
+    const val = el.value;
+    if (isNaN(val)) {
+      return (el.value = 8);
+    }
+    if (val < 8) return (el.value = 8);
+    if (val > 128) return (el.value = 128);
+  };
+  validateInput(e.target);
+  lengthInputRange.value = e.target.value;
+});
+
+fieldSet.addEventListener("input", () => {
+  // If all children are unchecked, disable generate button
+  const characterChecks = fieldSet.querySelectorAll("input");
+  const validateInputs = () => {
+    let valid = false;
+    characterChecks.forEach(el => {
+      if (el.checked) return (valid = true);
+    });
+    return valid;
+  };
+  const valid = validateInputs();
+  if (valid) {
+    generateBtn.removeAttribute("disabled");
+  } else {
+    generateBtn.setAttribute("disabled", true);
+  }
+});
 
 function generatePassword() {
   // Get the required password length from the user
@@ -25,11 +66,10 @@ function generatePassword() {
 
 // Return password length if valid, otherwise return undefined and provide alert
 function getPasswordLength() {
-  const length = prompt("Please choose a password length (between 8 and 128 characters)");
-  const parsedLength = parseInt(length);
-  if (isNaN(parsedLength)) return alert("Invalid selection");
-  if (parsedLength < 8 || parsedLength > 128) return alert("Invalid selection");
-  return parsedLength;
+  const length = parseInt(lengthInputRange.value);
+  if (isNaN(length)) return null;
+  if (length < 8 || length > 128) return null;
+  return length;
 }
 
 // We have 4 functions here, each one is responsible for returning a random character within a certain set - eg: lowercase, uppercase, number or symbol
@@ -37,10 +77,10 @@ function getPasswordLength() {
 // This provides an easy way to build the password and ensure the password specifications are met
 function getFunctionArray() {
   const arr = [];
-  const lower = confirm("Include lowercase letters?");
-  const upper = confirm("Include UPPERCASE letters?");
-  const numeric = confirm("Include numbers?");
-  const symbols = confirm("Include symbols?");
+  const lower = fieldSet.querySelector("#lower").checked;
+  const upper = fieldSet.querySelector("#upper").checked;
+  const numeric = fieldSet.querySelector("#number").checked;
+  const symbols = fieldSet.querySelector("#symbol").checked;
   if (lower) arr.push(getLower);
   if (upper) arr.push(getUpper);
   if (numeric) arr.push(getNumber);
@@ -99,8 +139,6 @@ const getSymbol = function () {
 };
 
 // Get references to the #generate element
-const generateBtn = document.querySelector("#generate");
-const copyBtn = document.querySelector("#copy");
 
 // click handler for 'copy to clipboard' button
 function onCopy() {
@@ -194,24 +232,3 @@ function writePassword(e) {
   // animate the password generation
   animateText(passwordText);
 }
-
-// const displayPwLength = document.getElementById("display-pw-length");
-const lengthInputRange = document.getElementById("pw-length-range");
-const lengthInputText = document.getElementById("pw-length-text");
-
-lengthInputRange.addEventListener("input", () => {
-  lengthInputText.value = lengthInputRange.value;
-});
-
-lengthInputText.addEventListener("change", e => {
-  const validateInput = el => {
-    const val = el.value;
-    if (isNaN(val)) {
-      return (el.value = 8);
-    }
-    if (val < 8) return (el.value = 8);
-    if (val > 128) return (el.value = 128);
-  };
-  validateInput(e.target);
-  lengthInputRange.value = e.target.value;
-});
