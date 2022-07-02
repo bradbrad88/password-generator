@@ -17,6 +17,10 @@ body,
   padding: 0;
 }
 
+p {
+  margin: 0.5rem 0;
+}
+
 body {
   font-family: sans-serif;
   background-color: var(--background);
@@ -33,11 +37,12 @@ body {
 
 header {
   text-align: center;
-  padding: 20px;
-  padding-top: 0px;
+  padding: 1rem;
+  padding-top: 0;
   color: hsl(0, 0%, 84%);
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-shadow: 12px 12px 3px rgba(255, 255, 255, 0.044);
+  text-transform: uppercase;
 }
 
 /* styling for main card */
@@ -53,7 +58,7 @@ header {
   width: min(90%, 800px);
   margin: 2rem auto;
   margin-top: 0;
-  padding: 30px 40px;
+  padding: 2rem;
 }
 
 .card-header::after {
@@ -129,7 +134,7 @@ header {
 }
 
 .show {
-  color: rgb(100, 94, 213);
+  color: rgb(77, 51, 143);
 }
 
 .card-footer {
@@ -174,15 +179,82 @@ button[disabled] {
   float: right;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+legend {
+  text-align: center;
+  margin: 0 auto;
+}
+
+fieldset {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  border: none;
+  gap: 1rem;
+  margin: 0.5rem 0;
+  padding-top: 0.5rem;
+}
+
+label {
+  text-align: left;
+  min-width: fit-content;
+}
+
+#length-label {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+input[type="number"] {
+  align-self: center;
+  display: inline-block;
+  width: 6rem;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 0.4rem 0.4rem;
+}
+
+input[type="number"]:focus-visible {
+  outline: groove 1px rgb(0, 0, 0);
+}
+
 footer {
   color: white;
   text-align: center;
   background-color: rgb(15, 15, 15);
   margin-top: auto;
   width: 100%;
+  padding: 1rem;
 }
 
-@media (max-width: 690px) {
+@media screen and (max-width: 772px) {
+  header {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    font-size: 1rem;
+    margin: 0;
+    padding: 1rem;
+  }
+  h1 {
+    margin: 0;
+  }
+  .card {
+    padding: 1rem;
+  }
+  h2 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
   .btn {
     font-size: 1rem;
     margin: 16px 0px 0px 0px;
@@ -191,11 +263,5 @@ footer {
 
   #password {
     font-size: 1rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .btn {
-    font-size: 0.8rem;
   }
 }

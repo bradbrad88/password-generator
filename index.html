@@ -15,28 +15,30 @@
       <main>
         <div class="card">
           <div class="card-header">
-            <h2>Generate a Password</h2>
             <button id="copy" class="hide">
               <img src="./assets/images/copy.png" alt="copy to clipboard icon" />
             </button>
           </div>
           <div class="card-body"></div>
           <div class="card-footer">
-            <form>
-              <label id="length-label"
-                >Password Length<input
-                  id="pw-length-range"
-                  type="range"
-                  max="128"
-                  min="8"
-                  value="8" />
-                <input id="pw-length-text" type="number" value="8"
-              /></label>
-              <fieldset>
+            <form id="password-form">
+              <p>
+                <label id="length-label">
+                  Password Length<input
+                    id="pw-length-range"
+                    type="range"
+                    max="128"
+                    min="8"
+                    value="8"
+                  />
+                  <input id="pw-length-text" type="number" value="8" />
+                </label>
+              </p>
+              <fieldset form="password-form" name="character-fieldset">
                 <legend>Include characters</legend>
-                <label
-                  ><input id="lower" name="lower" type="checkbox" checked />Lowercase</label
-                >
+                <label>
+                  <input id="lower" name="lower" type="checkbox" checked />Lowercase
+                </label>
                 <label
                   ><input id="upper" name="lower" type="checkbox" checked />Uppercase</label
                 >
