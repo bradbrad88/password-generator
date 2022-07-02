@@ -3,6 +3,7 @@ const copyBtn = document.querySelector("#copy");
 const lengthInputRange = document.getElementById("pw-length-range");
 const lengthInputText = document.getElementById("pw-length-text");
 const fieldSet = document.querySelector("fieldset");
+const passwordText = document.querySelector(".card-body");
 
 // Global scope for password so it is accessible to clipboard function
 let password = "";
@@ -219,8 +220,6 @@ function setAnimation(el) {
 // Write password to the #password input
 function writePassword(e) {
   e.preventDefault();
-  // select the parent field to the password
-  const passwordText = document.querySelector(".card-body");
   // run function to generate a password and store it in global password variable
   generatePassword();
   // display the 'copy to clipboard' button if password successfully generates
